@@ -145,6 +145,7 @@
     
     self.monthFormatter = [[NSDateFormatter alloc] init];
     self.monthFormatter.calendar = calendar;
+    self.monthFormatter.timeZone = calendar.timeZone;
     [self.monthFormatter setDateFormat:@"MMMM yyyy"];
 }
 
