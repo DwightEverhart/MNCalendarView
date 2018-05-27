@@ -79,6 +79,7 @@
         self.dayFont = [UIFont systemFontOfSize:14.f];
         self.todayFont = [UIFont boldSystemFontOfSize:[UIFont systemFontSize]];
         self.tapEnabled = YES;
+        self.highlightToday = YES;
         
     }
     return self;
@@ -415,7 +416,7 @@
     cell.backgroundView.backgroundColor = [UIColor clearColor];
     
     NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:date];
-    if (0 < interval && interval < MN_DAY && ![cell isOtherMonthDate]) {
+    if (self.highlightToday && 0 < interval && interval < MN_DAY && ![cell isOtherMonthDate]) {
         NSDictionary *stringAttributes = @{ NSFontAttributeName : self.todayFont
                                             //,NSUnderlineStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]
                                             };

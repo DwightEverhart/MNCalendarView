@@ -46,6 +46,7 @@
 @property(nonatomic,assign) BOOL pagingEnableSetting;
 @property(nonatomic,assign) BOOL addsFutureDates;
 @property(nonatomic, assign) BOOL tapEnabled;
+@property(nonatomic,assign) BOOL highlightToday;
 
 @property(nonatomic,strong) Class headerViewClass;
 @property(nonatomic,strong) Class weekdayCellClass;
