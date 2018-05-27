@@ -166,7 +166,7 @@
     MNFastDateEnumeration *enumeration = [[MNFastDateEnumeration alloc] initWithFromDate:[self.fromDate firstDateOfMonthWithCalendar:self.calendar]
                                                                                   toDate:[self.toDate lastDateOfMonthWithCalendar:self.calendar]
                                                                                 calendar:self.calendar
-                                                                                    unit:NSMonthCalendarUnit];
+                                                                                    unit:NSCalendarUnitMonth];
 
     for (NSDate *date in enumeration) {
         [monthDates addObject:date];
@@ -243,7 +243,7 @@
         return nil;
     }
     
-    unsigned units = NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit;
+    unsigned units = NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitWeekday;
     
     NSDateComponents *fromDateComp = [self.calendar components:units fromDate:_fromDate];
     NSDateComponents *toDateComp   = [self.calendar components:units fromDate:date];
@@ -333,7 +333,7 @@
 {
     NSDate *monthDate = self.monthDates[section];
     
-    NSDateComponents *components = [self.calendar components:NSDayCalendarUnit
+    NSDateComponents *components = [self.calendar components:NSCalendarUnitDay
                                                     fromDate:[self firstVisibleDateOfMonth:monthDate]
                                                       toDate:[self lastVisibleDateOfMonth:monthDate]
                                                      options:0];
@@ -379,7 +379,7 @@
     NSDate *firstDateInMonth    = [self firstVisibleDateOfMonth:monthDate];
     NSUInteger day              = indexPath.item - self.daysInWeek;
     
-    NSDateComponents *components = [self.calendar components:NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit fromDate:firstDateInMonth];
+    NSDateComponents *components = [self.calendar components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:firstDateInMonth];
     components.day += day;
     
     NSDate *date = [self.calendar dateFromComponents:components];
