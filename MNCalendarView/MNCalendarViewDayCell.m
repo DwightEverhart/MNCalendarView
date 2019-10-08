@@ -24,8 +24,14 @@ NSString *const MNCalendarViewDayCellIdentifier = @"MNCalendarViewDayCellIdentif
     if (self = [super initWithFrame:frame]) {
         self.enabledTextColor = [UIColor darkTextColor];
         self.disabledTextColor = [UIColor lightGrayColor];
-        self.enabledBackgroundColor = [UIColor whiteColor];
-        self.disabledBackgroundColor = [UIColor colorWithRed:.96f green:.96f blue:.96f alpha:1.f];
+
+        if (@available(iOS 13.0, *)) {
+            self.enabledBackgroundColor = [UIColor systemBackgroundColor];
+            self.disabledBackgroundColor = [UIColor secondarySystemBackgroundColor];
+        } else {
+            self.enabledBackgroundColor = [UIColor whiteColor];
+            self.disabledBackgroundColor = [UIColor colorWithRed:.96f green:.96f blue:.96f alpha:1.f];
+        }
     }
     return self;
 }

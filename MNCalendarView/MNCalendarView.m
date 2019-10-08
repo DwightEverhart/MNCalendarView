@@ -69,11 +69,19 @@
         self.weekdayCellClass   = MNCalendarViewWeekdayCell.class;
         self.dayCellClass       = MNCalendarViewDayCell.class;
         
-        _separatorColor         = [UIColor colorWithRed:.85f green:.85f blue:.85f alpha:1.f];
-        
+        if (@available(iOS 13.0, *)) {
+            self.backgroundColor = [UIColor secondarySystemBackgroundColor];
+            self.headerTitleColor = [UIColor labelColor];
+            self.enabledDayTextColor = [UIColor labelColor];
+            _separatorColor = [UIColor separatorColor];
+        } else {
+            self.headerTitleColor = [UIColor blackColor];
+            _separatorColor = [UIColor colorWithRed:.85f green:.85f blue:.85f alpha:1.f];
+        }
+
         [self addSubview:self.collectionView];
         [self applyConstraints];
-        self.headerTitleColor = [UIColor blackColor];
+
         self.headerFont = [UIFont systemFontOfSize:16.f];
         self.weekdayFont = [UIFont systemFontOfSize:12.f];
         self.dayFont = [UIFont systemFontOfSize:14.f];
@@ -106,7 +114,13 @@
         _collectionView =
         [[UICollectionView alloc] initWithFrame:CGRectZero
                            collectionViewLayout:layout];
-        _collectionView.backgroundColor = [UIColor colorWithRed:.96f green:.96f blue:.96f alpha:1.f];
+
+        if (@available(iOS 13.0, *)) {
+            _collectionView.backgroundColor = [UIColor secondarySystemBackgroundColor];
+        } else {
+            _collectionView.backgroundColor = [UIColor colorWithRed:.96f green:.96f blue:.96f alpha:1.f];
+        }
+
         _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
